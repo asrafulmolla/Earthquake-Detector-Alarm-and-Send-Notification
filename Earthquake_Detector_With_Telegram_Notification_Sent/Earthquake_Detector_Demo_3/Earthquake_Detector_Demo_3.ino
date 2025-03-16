@@ -6,8 +6,8 @@ const char *ssid = "Falcon Squad";
 const char *password = "Zaman7865@";
 
 // Telegram bot details
-const char *botToken = "7572778703:AAG_IkmACkGAY-h5P2oSLYWqrNiTDn-Xxm8";
-const char *chatID = "6026678067";
+const char *botToken = "###";
+const char *chatID = "###";
 
 // Define pins
 const int vibrationPin = D0; // SW-420 sensor digital output
@@ -15,7 +15,7 @@ const int buzzerPin = D8;    // Buzzer pin
 
 WiFiClientSecure client;
 unsigned long lastAlertTime = 0; // শেষবার নোটিফিকেশন পাঠানোর সময়
-const int alertInterval = 2000;  // 5 সেকেন্ড পর আবার পাঠাতে পারবে
+const int alertInterval = 2000;  // 2 সেকেন্ড পর আবার পাঠাতে পারবে
 
 void setup()
 {
