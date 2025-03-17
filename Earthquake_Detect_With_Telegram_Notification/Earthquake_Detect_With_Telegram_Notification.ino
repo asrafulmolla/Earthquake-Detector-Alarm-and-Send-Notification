@@ -12,6 +12,7 @@ const char *chatID = "###";
 // Define pins
 const int vibrationPin = D0; // SW-420 sensor digital output
 const int buzzerPin = D8;    // Buzzer pin
+const int ledPin = D4;        // LED pin
 
 WiFiClientSecure client;
 unsigned long lastAlertTime = 0; // শেষবার নোটিফিকেশন পাঠানোর সময়
@@ -19,9 +20,11 @@ const int alertInterval = 2000;  // 2 সেকেন্ড পর আবার 
 
 void setup()
 {
-  pinMode(vibrationPin, INPUT);
-  pinMode(buzzerPin, OUTPUT);
-  digitalWrite(buzzerPin, LOW); // শুরুতে বুজার বন্ধ থাকবে
+  pinMode(vibrationPin, INPUT);  // Set vibration sensor as input
+  pinMode(buzzerPin, OUTPUT);    // Set buzzer as output
+  pinMode(ledPin, OUTPUT);       // Set LED as output
+  digitalWrite(buzzerPin, LOW);  // Start with buzzer off
+  digitalWrite(ledPin, LOW);     // Start with LED off
 
   Serial.begin(115200);
 
@@ -70,13 +73,17 @@ void loop()
   {
     Serial.println("🚨 Earthquake Detected!");
 
-    // Buzzer beeps twice for 2 seconds each
+    // Turn on buzzer and LED for 2 seconds
     for (int i = 0; i < 2; i++)
     {
       digitalWrite(buzzerPin, HIGH);
-      delay(1000); // Buzzer on for 2 seconds
+      digitalWrite(ledPin, HIGH);
+      delay(2000);
+
+      // Turn off buzzer and LED
       digitalWrite(buzzerPin, LOW);
-      delay(500); // Small delay between beeps
+      digitalWrite(ledPin, LOW);
+      delay(250);
     }
 
     // Send Telegram alert with interval
